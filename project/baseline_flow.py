@@ -101,16 +101,16 @@ class BaselineNLPFlow(FlowSpec):
 
         current.card.append(Markdown("## Examples of False Positives"))
         # TODO: compute the false positive predictions where the baseline is 1 and the valdf label is 0.
-        self.fp = self.valdf.loc[(self.valdf['pred']==1) & (self.valdf['label']==0), 'review']
-        print(self.fp.head())
+        self.fp = self.valdf[(self.valdf['pred']==1) & (self.valdf['label']==0)].head()
+        print(self.fp)
         # TODO: display the false_positives dataframe using metaflow.cards
         # Documentation: https://docs.metaflow.org/api/cards#table
         current.card.append(Table.from_dataframe(self.fp))
 
         current.card.append(Markdown("## Examples of False Negatives"))
         # TODO: compute the false negative predictions where the baseline is 0 and the valdf label is 1.
-        self.fn = self.valdf.loc[(self.valdf['pred']==0) & (self.valdf['label']==1), 'review']
-        print(self.fn.head())
+        self.fn = self.valdf[(self.valdf['pred']==0) & (self.valdf['label']==1)].head()
+        print(self.fn)
         # TODO: display the false_negatives dataframe using metaflow.cards
         current.card.append(Table.from_dataframe(self.fn))
 
